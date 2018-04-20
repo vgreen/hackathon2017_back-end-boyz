@@ -1,0 +1,106 @@
+<%= simple_form_for @request, html: { multipart: true } do |f|%>
+
+<a-heading size="l">Персональные данные</a-heading>
+                
+                  <div class="row">
+                    <div class="input-field col m4 s12">
+                      <input id="last_name"  accesskey="ф" type="text" maxlength="15" class="validate" name="request[second_name]"  validate_form()>
+                      <label for="last_name">Фамилия</label>
+                    </div>
+
+                    <div class="input-field col m4 s12">
+                      <input id="first_name" accesskey="и" type="text" maxlength="15" class="validate" name="request[name]"  required>
+                      <label for="first_name">Имя</label>
+                    </div>
+
+                    <div class="input-field col m4 s12">
+                      <input id="patronymic" accesskey="о" type="text" maxlength="15" class="validate" name="request[patronim]"  required>
+                      <label for="patronymic">Отчество</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col m6 s12">
+                      <input id="birthdate" type="text" maxlength="10" accesskey="р" class="validate" name="request[birthday]" 
+                            placeholder="дд.мм.гггг" required pattern="[0-9]{2}\.[0-9]{2}\.[0-9]{4}">
+                      <label for="birthdate">Дата рождения</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col m4 s12">
+                      <input id="phone" accesskey="т" maxlength="11" type="tel" placeholder="79160000000" class="validate" name="request[title]"
+                            required pattern="[7][0-9]{10}">
+                      <label for="phone">Телефон</label>
+                    </div>
+
+                    <div class="input-field col m8 s12">
+                      <input id="e-mail" maxlegth="40" accesskey="е" type="email" class="validate" name="request[email]">
+                      <label for="e-mail">E-mail</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col m4 s12">
+                      <input id="passport_number" maxlength="10" required pattern="[0-9]{10}" required accesskey="н" type="number" class="validate" placeholder="4800111111" name="request[passport_num]">
+                      <label for="passport_number">Номер паспорта</label>
+                    </div>
+
+                    <div class="input-field col m4 s12">
+                      <input id="date" type="text" maxlength="10" accesskey="в" class="validate" name="request[date_pass]"
+                            placeholder="дд.мм.гггг" required pattern="[0-9]{2}\.[0-9]{2}\.[0-9]{4}">
+                      <label for="date">Дата выдачи</label>
+                    </div>
+
+                    <div class="input-field col m4 s12">
+                      <input id="kod" placeholder="552-228" type="text" accesskey="к" required pattern="[1-9][1-9][1-9]\-[1-9][1-9][1-9]" maxlegth="6" class="validate" name="request[code_podr]">
+                      <label for="kod">Код подразделения</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="vidan"  required type="text" class="validate" name="request[vidan]">
+                      <label for="vidan">Кем выдан</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="addres" type="text" accesskey="а" class="validate" name="request[addres]" required = true>
+                      <label for="addres">Адрес проживания</label>
+                    </div>
+                  </div>
+                <!--</form>-->
+
+
+                <a-heading size="l">Место работы</a-heading>
+                <!--<form>-->
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="region" maxlength="50"  required accesskey="р" type="text" class="validate" name="request[region]">
+                            <label for="region">Регион</label>
+                        </div>  
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="organisation"  required="" accesskey="н" type="text" class="validate">
+                            <label for="organisation">Название организации</label>
+                        </div>  
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="inn" maxlength="12" required accesskey="и" type="number" class="validate" >
+                            <label for="inn">ИНН</label>
+                        </div>  
+                    </div>
+                    <div class="row center-align">
+                        <button id="but" class="btn waves-effect waves-light red darken-1" type="submit" accesskey="о" >Отправить
+                                <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+
+<% end%>
+  

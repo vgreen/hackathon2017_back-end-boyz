@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  		 <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, initial-scale=1" />
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+         <script type="text/javascript">
+             $( document ).ready(function() {      
+                    var is_mobile = false;
+
+                    if (is_mobile == true) {
+                       $('.wrp').css('float', 'center');
+                    }
+                 });
+                            function check(){
+                                if ($('#num_control').val() == <%= @f %>){
+                                    $('#sub').hide();
+                                    $('.input-field').hide();
+                                    $('#result').empty().append(' <a-label size="xl">Ваша заявка успешно оформлена, ожидайте дальнейших указаний по эл.почте</a-label>');
+                                }
+                                else{
+                                    $('#result').empty().append('<br/> <a-label size="xl">Ошибка! Попробуйте снова</a-label>');
+                                }
+                            };
+
+         </script>
+        <title>Alfa Blueprint</title>
+        <link rel="stylesheet" href="../../assets/blueprint/components.css" />
+        <script src="../../assets/blueprint/components.js"></script>
+        <!--
+        <link rel="stylesheet" href="./blueprint/corporate-components.css" />
+        <script src="./blueprint/corporate-components.js"></script>
+        -->
+        <!--
+        <link rel="stylesheet" href="./blueprint/retail-components.css" />
+        <script src="./blueprint/retail-components.js"></script>
+        -->
+
+                <!-- Materialize -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+                <!-- Yandex Map -->
+        <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+        <!--
+        <link rel="stylesheet" href="./blueprint/corporate-components.css" />
+        <script src="./blueprint/corporate-components.js"></script>
+        -->
+        <!--
+        <link rel="stylesheet" href="./blueprint/retail-components.css" />
+        <script src="./blueprint/retail-components.js"></script>
+        -->
+        <style type="text/css">
+            .input-field input[type="text"]:focus + label {
+                color: #e53935;
+            }
+
+            .input-field input[type="text"]:focus {
+                border-bottom: 1px solid #e53935;
+                box-shadow: 0 1px 0 0 #e53935;
+            }
+
+            .parallax-container {
+                height: 300px;
+            } 
+
+            .link__text, .link_theme_alfa-on-white  {
+                color: white;
+                border-color: white;
+            }
+
+            .social__info > a > .link__text {
+                color: black;
+            }
+
+            .header-desktop {
+                font-weight: thin;
+                color: white;
+                text-align: center;
+                margin-top: 130px;
+                text-shadow: 1px 1px 2px black, 0 0 1em black;
+            }
+
+            .page__content {
+                padding-top: 0px;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+
+            .col > img {
+                width: 60%;
+            }
+
+            .link__text {
+                text-shadow: 1px 1px 1px black, 0 0 1em black;
+            }
+
+            @media (max-width: 760px) {
+                .parallax-container {
+                    display: none;
+
+                }
+                .link__text, .link_theme_alfa-on-white  {
+                    color: black;
+                    border-color: black;
+                }
+                .heading_size_xl {
+                    text-align: center;
+                    margin-top: 70px;
+                }
+
+                .heading_size_l {
+                    text-align: center;
+                }
+
+                .simple_form {
+                    margin-top: -35px;
+                }
+
+            }
+
+            @media (min-width: 760px) {
+                .header-mobile {
+                    display: none;
+                }
+            }   
+            .rtt{
+                box-shadow: 10px 10px 10px red, 0 0 1em red;
+            }
+        </style>
+  </head>
+
+  <body class="theme_alfa-on-white"><a-theme-provider theme="alfa-on-white">
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('.parallax').parallax();
+
+                var is_mobile = false;
+
+                if (is_mobile == true) {
+                    $('.wrp').css('float', 'center');
+                }
+                $("#bank").hide();
+                $("#courier").hide();
+                $('#bank_radio').click(function(){
+                    $(this).attr('view','extra');
+                    $("#courier_radio").removeAttr('view');
+                    $("#courier").hide();          
+                    $("#bank").show();
+                    location.href = '#bank';
+
+                });
+                $('#courier_radio').click(function(){
+                    $(this).attr('view','extra');
+                    $("#bank_radio").removeAttr('view');
+                    $("#bank").hide();
+                    $("#courier").show();
+                    location.href = '#courier';
+                });
+       
+                
+                //Яндекс карты
+                ymaps.ready(function () {
+                    var map;
+                    ymaps.geolocation.get().then(function (res) {
+                        var mapContainer = $('#map'),
+                            bounds = res.geoObjects.get(0).properties.get('boundedBy'),
+                            // Рассчитываем видимую область для текущей положения пользователя.
+                            mapState = ymaps.util.bounds.getCenterAndZoom(
+                                bounds,
+                                [mapContainer.width(), mapContainer.height()]
+                            );
+                            mapState.controls = ['smallMapDefaultSet'];
+                            createMap(mapState);
+                        }, function (e) {
+                            // Если местоположение невозможно получить, то просто создаем карту.
+                            createMap({
+                                center: [55.751574, 37.573856],
+                                zoom: 5,
+                                controls: ['smallMapDefaultSet']
+                            });
+                        });
+                    
+                    function createMap (state) {
+                        map = new ymaps.Map('map', state),
+                            // Создаем геообъект с типом геометрии "Точка".
+
+                        map.geoObjects
+                            .add(new ymaps.Placemark([55.742063, 37.646123], {},
+                            {
+                                preset: 'islands#redGlyphIcon',
+                                iconGlyph: 'text-color',
+                                iconGlyphColor: 'red'
+                            }))
+                            .add(new ymaps.Placemark([55.762063, 37.656123], {},
+                            {
+                                preset: 'islands#redGlyphIcon',
+                                iconGlyph: 'text-color',
+                                iconGlyphColor: 'red'
+                            }))
+                            .add(new ymaps.Placemark([55.752063, 37.666123], {},
+                            {
+                                preset: 'islands#redGlyphIcon',
+                                iconGlyph: 'text-color',
+                                iconGlyphColor: 'red'
+                            }));
+                    }
+                });
+                (function( $ ){
+
+                    $(function() {
+
+                      $('form').each(function(){
+                        // Объявляем переменные (форма и кнопка отправки)
+                      var form = $(this),
+                            btn = form.find('#but');
+
+                        // Добавляем каждому проверяемому полю, указание что поле пустое
+                      form.find('input').addClass('empty_field');
+
+                        // Функция проверки полей формы
+                        function checkInput(){
+                          form.find('input').each(function(){
+                            if($(this).val() != ''){
+                              // Если поле не пустое удаляем класс-указание
+                        $(this).removeClass('empty_field');
+                            } else {
+                              // Если поле пустое добавляем класс-указание
+                        $(this).addClass('empty_field');
+                            }
+                          });
+                        }
+
+                        // Функция подсветки незаполненных полей
+                        function lightEmpty(){
+                          form.find('.empty_field').css({'border-color':'#d8512d'});
+                          // Через полсекунды удаляем подсветку
+                          setTimeout(function(){
+                            form.find('.empty_field').removeAttr('style');
+                          },500);
+                        }
+
+                        // Проверка в режиме реального времени
+                        setInterval(function(){
+                          // Запускаем функцию проверки полей на заполненность
+                        checkInput();
+                          // Считаем к-во незаполненных полей
+                          var sizeEmpty = form.find('.empty_field').size();
+                          // Вешаем условие-тригер на кнопку отправки формы
+                          if(sizeEmpty > 0){
+                            if(btn.hasClass('disabled')){
+                              return false
+                            } else {
+                              btn.addClass('disabled')
+                            }
+                          } else {
+                            btn.removeClass('disabled')
+                          }
+                        },500);
+
+                        // Событие клика по кнопке отправить
+                        btn.click(function(){
+                          if($(this).hasClass('disabled')){
+                            // подсвечиваем незаполненные поля и форму не отправляем, если есть незаполненные поля
+                        lightEmpty();
+                            return false
+                          } else {
+                            // Все хорошо, все заполнено, отправляем форму
+                            form.submit();
+                          }
+                        });
+                      });
+                    });
+
+                })( jQuery );
+
+            });
+        </script>
+        <a-page>
+            <a-header slot="header">
+                <a-menu view="horizontal" slot="menu" style="color: white;">
+                    <!-- <a-link size="xl" text="Офисы" action="maps#map"></a-link> -->
+                </a-menu>
+            </a-header>
+
+            <%= yield %>
+            <a-footer slot="footer"></a-footer>
+        </a-page></a-theme-provider>
+  </body>
+</html>

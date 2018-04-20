@@ -1,0 +1,58 @@
+            <div class="parallax-container" slot="header">
+                <div class="parallax">
+                    <%= image_tag("Credit.jpg") %>
+                </div>
+                <h1 class="header-desktop">Подача документов</h1>
+            </div>
+
+                        <div class="section">
+                <div class="row header-mobile">
+                    <a-heading size="xl">Подача документов</a-heading>
+                </div>
+                  <form>
+                    <a-heading size="l">Выберите способ доставки документов</a-heading>
+                    <div class="row">
+                        <div class="col m6 s12">
+                          <input type="radio" name="group1" id="bank_radio">
+                          <label for="bank_radio">В отделении банка</label>
+                        </div>
+                        <div class="col m6 s12">
+                          <input type="radio" name="group1" id="courier_radio">
+                          <label for="courier_radio">Выезд менеджера на дом</label>
+                        </div>                    
+                    </div>
+
+                    <div id="bank">
+                        <a-heading size="l">Выберите удобное отделение</a-heading>
+                        <div class="row">
+                            <div class="col s12">
+                                <div id="map" style="width: 100%; height: 400px"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="courier">
+                        <a-heading size="l">Введите адрес для выезда менеджера</a-heading>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="address" type="text" class="validate" name="request[address]">
+                                <label for="address">Адрес</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <input id="date" type="text" class="validate" name="request[address]">
+                                <label for="date">Дата</label>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="time" type="text" class="validate" name="request[address]">
+                                <label for="time">Время</label>
+                            </div>
+                        </div>
+                        <div class="row center-align">
+                            <button class="btn waves-effect waves-light red darken-1" type="submit" name="action">Отправить
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+                  </form>
+            </div>
