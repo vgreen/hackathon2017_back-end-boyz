@@ -1,24 +1,5 @@
-# README
+# Hackaton Best 2017
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Приложение для регистрации карт, особенностью которого является беспрепятственная регистрация карты для людей с нарушеным слухом и речью.
+Данный продукт был реализован для компании Альфабанк в рамках хакатона Best 2017.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
